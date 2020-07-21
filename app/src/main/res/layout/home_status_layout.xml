@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/slider_background"
+    android:elevation="8dp">
+
+
+    <TextView
+        android:id="@+id/txtStatusTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_toRightOf="@+id/imgStatus"
+
+        android:text="All good here! 🙌" />
+
+    <TextView
+        android:id="@+id/txtSubStatusTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtStatusTitle"
+        android:layout_margin="16dp"
+        android:layout_toRightOf="@+id/imgStatus"
+        android:text="You're even with everybody." />
+
+    <ImageView
+        android:id="@+id/imgStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        app:srcCompat="@drawable/check" />
+
+
+    <ImageView
+        android:id="@+id/imgStar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="24dp"
+        android:layout_toRightOf="@id/imgStatus"
+        android:src="@drawable/ic_baseline_star_border_24" />
+
+
+</RelativeLayout>
