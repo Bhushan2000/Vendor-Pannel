@@ -13,4 +13,54 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="pick_image_intent_text">pick image intent text</string>
+
+
+    <string name="user_name">Bhushan</string>
+    <string name="user_password">bhushan02</string>
+    <string name="loginPreference">com.example.sharedpreferencekeepuser_login_Preference</string>
+    <string name="loginStatusPreference">com.example.sharedpreferencekeepuserlogin_Status_Preference</string>
+    9
+
+
+    <string name="nameerror">Enter a valid name</string>
+    <string name="emailerror">Enter a valid email</string>
+    <string name="mobileerror">Enter a valid mobile</string>
+    <string name="dateerror">Enter a valid date</string>
+    <string name="ageerror">Enter a valid age</string>
+
+
+    <string-array name="category">
+        <item>-Product Condition-</item>
+        <item>New</item>
+        <item>Old</item>
+        <item>Form Manufacturer</item>
+
+    </string-array>
+
+    <string-array name="subcategory">
+        <item>-Product Type-</item>
+        <item>Mobiles</item>
+        <item>Shoes</item>
+        <item>Toys</item>
+        <item>Books</item>
+        <item>Electronics</item>
+        <item>Flight</item>
+        <item>Appliences</item>
+        <item>Beauty</item>
+        <item>Furniture</item>
+        <item>Fashion</item>
+    </string-array>
+
+    <string name="home">Home</string>
+
+    <string name="products">Products</string>
+    <string name="orders">Orders</string>
+    <string name="payment_setting">Payment Setting</string>
+    <string name="aadhar_verification">Aadhar Verification</string>
+    <string name="pan_verification">PAN Verification</string>
+    <string name="product_posting">Product Posting</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

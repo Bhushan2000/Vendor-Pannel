@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
+
+    tools:context=".Activities.SplashActivity">
+
 
 
 
@@ -20,7 +22,27 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="624dp"
+        android:layout_height="525dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtVendorPanel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.934"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/splash_img_1" />
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="669dp"
+        android:layout_height="486dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVendorPanel"
+        app:srcCompat="@drawable/splash_img_2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

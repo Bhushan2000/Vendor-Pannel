@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.vendor.vendorpannel">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,33 +18,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewProductsActivity"></activity>
+        <activity android:name=".Activities.NewActivity"></activity>
+        <activity android:name=".Activities.PanVerificationActivity" />
+        <activity android:name=".Activities.ProfileActivity" />
+        <activity android:name=".Activities.AadharActivity" />
+        <activity android:name=".Activities.ViewProductsActivity" />
         <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Activities.HomeActivity"
+            android:label="@string/title_activity_home" />
+        <activity android:name=".Activities.OthersDetailsActivity" />
+        <activity android:name=".Activities.VerificationActivity" />
+        <activity android:name=".Activities.MobileRegistrationActivity" />
+        <activity android:name=".Activities.MoveToRegistrationActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.SelectMarketPlaceActivity" />
+        <activity android:name=".Activities.Registration_Page" />
+        <activity android:name=".Activities.ProductActivity" />
+        <activity
+            android:name=".Activities.SplashActivity"
+            android:theme="@style/Toolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OthersDetailsActivity" />
-        <activity android:name=".VerificationActivity" />
-        <activity android:name=".MobileRegistrationActivity" />
-        <activity android:name=".MoveToRegistrationActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SelectMarketPlaceActivity" />
-        <activity android:name=".SplashActivity"></activity>
-
-        <meta-data
-            android:name="CLOUDINARY_URL"
-            android:value="cloudinary://@myCloudName"/>
-
-
-
-
-
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>

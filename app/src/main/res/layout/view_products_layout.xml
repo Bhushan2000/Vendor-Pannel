@@ -1,84 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/slider_background"
     android:elevation="8dp">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imgProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:srcCompat="@drawable/t_shirt_2"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="277dp" />
-
-    <TextView
-        android:id="@+id/txtProductHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgProduct"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="V Neck Shirt - Pink"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="460dp" />
-
-    <TextView
-        android:id="@+id/txtSubheading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtProductHeading"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="$24.99"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="116dp"
-        tools:layout_editor_absoluteY="526dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtProductHeading"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+            <ImageView
+                android:tint="#d2d2d2"
+                android:id="@+id/imgProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/t_shirt_2" />
 
-        android:layout_toRightOf="@id/txtSubheading"
-        android:background="@drawable/rating_drawable"
-        android:orientation="horizontal">
 
-        <ImageView
+            <TextView
+                android:id="@+id/txtProductHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgProduct"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="V Neck Shirt - Pink"
+                app:layout_constraintEnd_toEndOf="@+id/imgProduct"
+                app:layout_constraintStart_toStartOf="@+id/imgProduct"
+                app:layout_constraintTop_toBottomOf="@+id/imgProduct" />
 
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_baseline_star_border_24"
-            android:tint="@android:color/white" />
+            <TextView
 
-        <TextView
+                android:id="@+id/txtSubheading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtProductHeading"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="$24.99"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txtProductHeading"
+                app:layout_constraintTop_toBottomOf="@+id/txtProductHeading" />
 
-            android:id="@+id/txtRating"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/txtSubheading"
-            android:layout_weight="1"
-            android:padding="2dp"
+            <LinearLayout
 
-            android:text="4.9"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            tools:layout_editor_absoluteX="275dp"
-            tools:layout_editor_absoluteY="526dp" />
-    </LinearLayout>
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
 
-</RelativeLayout>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtSubheading"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+
+                android:background="@drawable/rating_drawable"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txtProductHeading"
+                app:layout_constraintTop_toBottomOf="@+id/txtProductHeading"
+                tools:ignore="MissingConstraints">
+
+                <ImageView
+
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_star_border_24"
+                    android:tint="@android:color/white" />
+
+                <TextView
+
+                    android:id="@+id/txtRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/txtSubheading"
+                    android:layout_weight="1"
+                    android:padding="2dp"
+
+                    android:text="4.9"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    tools:layout_editor_absoluteX="275dp"
+                    tools:layout_editor_absoluteY="526dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

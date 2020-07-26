@@ -1,4 +1,4 @@
-package com.vendor.vendorpannel;
+package com.vendor.vendorpannel.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -7,28 +7,53 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
-import com.vendor.vendorpannel.Fragments.AadharVerificationFragment;
+import com.vendor.vendorpannel.Fragments.AadharFragment;
 import com.vendor.vendorpannel.Fragments.HomeFragment;
 import com.vendor.vendorpannel.Fragments.OrdersFragment;
-import com.vendor.vendorpannel.Fragments.PanVerificationFragment;
+import com.vendor.vendorpannel.Fragments.PaymentSettingFragment;
+import com.vendor.vendorpannel.Fragments.ProductPostingFragment;
 import com.vendor.vendorpannel.Fragments.ProductsFragment;
+import com.vendor.vendorpannel.R;
+ import com.vendor.vendorpannel.SharedPreferences.SharedPreference_Config;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
     FrameLayout frameLayout;
+    private Window window;
+    public static Toolbar toolbar;
+    private AppBarLayout.LayoutParams params;
+    private int scrollFlags;
+    private  MenuItem previousMenuItem;
+
+    private int currentFragment = -1;
+    private static final int HOME_FRAGMENT = 0;
+
+    private SharedPreference_Config sharedPreference_config;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        sharedPreference_config = new SharedPreference_Config(getApplicationContext());
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Home");
 
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -41,6 +66,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         frameLayout = findViewById(R.id.fragment_container);
 
 
+        params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        scrollFlags = params.getScrollFlags();
+
+
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setChecked(true);
+
+
+
+
         if (savedInstanceState == null) {
 
 
@@ -50,46 +85,88 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
+
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_home:
+            // For Setting the title on Toolbar when changes of fragments
 
+       // checking menu item checked or not If not make it in checked state
+//        if (item.isChecked()) item.setChecked(false);
+//        else
+//            item.setChecked(true);
+
+
+        if (previousMenuItem != null){
+            item.setChecked(false);
+        }
+        item.isCheckable();
+        item.isChecked();
+        previousMenuItem = item;
+
+        //closing drawer on item click
+        drawer.closeDrawers();
+
+
+
+        int  id = item.getItemId();
+        switch (id) {
+            case R.id.nav_home:
+                toolbar.setTitle(getString(R.string.home));
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomeFragment()).commit();
                 break;
 
             case R.id.nav_products:
-
+                toolbar.setTitle(getString(R.string.products));
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProductsFragment()).commit();
+
                 break;
 
             case R.id.nav_orders:
+                toolbar.setTitle(getString(R.string.orders));
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new OrdersFragment()).commit();
                 break;
 
             case R.id.nav_payment_setting:
+                toolbar.setTitle(getString(R.string.payment_setting));
 
-                Toast.makeText(this, "Cart", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new PaymentSettingFragment()).commit();
+
+
                 break;
             case R.id.nav_pan_verification:
+                toolbar.setTitle(getString(R.string.pan_verification));
 
-                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new PanVerificationFragment()).commit();
+                startActivity(new Intent(this,NewActivity.class));
+//                finish();
+
+                break;
+            case R.id.nav_aadhar_verification:
+                toolbar.setTitle(getString(R.string.aadhar_verification));
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new AadharFragment()).commit();
+                //                finish();
+
                 break;
             case R.id.nav_product_posting:
 
-                Toast.makeText(this, "account", Toast.LENGTH_SHORT).show();
+                toolbar.setTitle(getString(R.string.product_posting));
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProductPostingFragment()).commit();
                 break;
             case R.id.nav_sign_out:
 
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AadharVerificationFragment()).commit();
+                sharedPreference_config.writeLoginStatus(false);
+                startActivity(new Intent(this,LoginActivity.class));
+                finish();
 
                  break;
 
@@ -108,7 +185,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            if (currentFragment == HOME_FRAGMENT) {
+
+
+                super.onBackPressed();
+
+
+            }
+
 
         }
     }
@@ -134,4 +219,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
+

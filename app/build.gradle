@@ -12,6 +12,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -42,12 +43,15 @@ dependencies {
     implementation group: 'com.cloudinary', name: 'cloudinary-android', version: '1.28.2'
 
 
-
-
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     implementation 'com.opensooq.supernova:gligar:1.1.0'
 
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+    implementation 'me.omidh:liquidradiobutton:1.0.01'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'com.github.florent37:materialtextfield:1.0.7'
+     implementation 'com.basgeekball:awesome-validation:1.3'
 
 
 

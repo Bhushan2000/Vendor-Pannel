@@ -1,4 +1,4 @@
-package com.vendor.vendorpannel;
+package com.vendor.vendorpannel.Activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.net.Uri;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
+
+import com.vendor.vendorpannel.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;

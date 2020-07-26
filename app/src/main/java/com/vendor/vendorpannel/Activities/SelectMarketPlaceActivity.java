@@ -1,8 +1,10 @@
-package com.vendor.vendorpannel;
+package com.vendor.vendorpannel.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.vendor.vendorpannel.R;
 
 public class SelectMarketPlaceActivity extends AppCompatActivity {
 

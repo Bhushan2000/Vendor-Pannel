@@ -1,14 +1,16 @@
-package com.vendor.vendorpannel;
+package com.vendor.vendorpannel.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class OthersDetailsActivity extends AppCompatActivity {
+import com.vendor.vendorpannel.R;
+
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_others_details);
+        setContentView(R.layout.activity_profile);
     }
 }

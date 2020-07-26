@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VerificationActivity">
+    tools:context=".Activities.VerificationActivity">
 
     <ImageView
         android:layout_marginTop="150dp"
@@ -25,7 +25,7 @@
         android:textStyle="bold"
         android:textSize="30sp"
         android:layout_centerInParent="true"
-        android:text="Verification successful" />
+        android:text="  Successful" />
 
     <Button
         android:id="@+id/btnContinue"

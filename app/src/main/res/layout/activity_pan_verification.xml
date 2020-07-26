@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    tools:context=".Activities.PanVerificationActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <ImageView
+                android:tint="@android:color/white"
+                android:id="@+id/action_bar_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/pan_verification" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
+        android:layout_below="@id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -15,18 +45,10 @@
 
 
             <RelativeLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imgCamera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:padding="8dp"
-                    android:src="@drawable/camera" />
 
                 <com.google.android.material.textfield.TextInputLayout
 
@@ -59,13 +81,13 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tilName"
                     android:layout_marginStart="16dp"
-
                     android:layout_marginEnd="16dp"
-                    android:hint="Enter the Father Name"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:mtf_labelColor="@android:color/black">
 
                     <EditText
                         android:id="@+id/etFatherName"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -73,22 +95,23 @@
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
                         android:ems="10"
+                        android:hint="Enter the Father Name"
                         android:inputType="textPersonName"
                         android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
-
                     android:id="@+id/tilPanCardNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tilFatherName"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:hint="Enter Pan Card Number"
+                    app:errorEnabled="true"
+                    app:mtf_image="@drawable/pan_verification"
 
-                    app:errorEnabled="true">
+                    app:mtf_labelColor="@android:color/black">
 
                     <EditText
                         android:id="@+id/etPanCardNumber"
@@ -99,8 +122,10 @@
                         android:layout_marginTop="50dp"
                         android:layout_marginEnd="16dp"
                         android:ems="10"
+                        android:hint="Enter Pan Card Number"
                         android:inputType="text|textPersonName"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColorHint="@android:color/darker_gray" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -111,9 +136,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tilPanCardNumber"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginEnd="16dp"
-                    android:hint="Enter the DOB"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:mtf_labelColor="@android:color/black">
+
 
                     <EditText
                         android:id="@+id/etDOB"
@@ -125,61 +152,52 @@
                         android:layout_marginTop="50dp"
                         android:layout_marginEnd="16dp"
                         android:ems="10"
-
+                        android:hint="Enter the DOB"
 
                         android:inputType="date"
                         android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <LinearLayout
-                    android:orientation="vertical"
                     android:id="@+id/tilSignature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tilDOB"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    >
+                    android:orientation="vertical">
 
                     <com.github.gcacace.signaturepad.views.SignaturePad
+                        android:id="@+id/signaturePad"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:id="@+id/signaturePad"/>
-
-
-
-
-
-
-
-
+                        android:layout_height="100dp" />
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/saveButton"
-                            android:text="Save"
-                            android:layout_weight="1"/>
 
                         <Button
+                            android:id="@+id/saveButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Save" />
+
+                        <Button
                             android:id="@+id/clearButton"
-                            android:text="Clear"
-                            android:layout_weight="1"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Clear" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnContinue"
 
-                    android:layout_width="350dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imgPhoto"
                     android:layout_alignParentBottom="true"
@@ -218,10 +236,12 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="16dp"
 
+                    android:src="@drawable/ic_menu_camera"
+                    android:tint="#d2d2d2" />
 
-                    android:src="@drawable/ic_baseline_supervisor_account_24" />
+
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
 
+</RelativeLayout>
