@@ -11,29 +11,41 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.vendor.vendorpannel.Activities.DatabaseActivityForPractise;
 import com.vendor.vendorpannel.Activities.ProductActivity;
+import com.vendor.vendorpannel.Activities.ViewProductsActivity;
 import com.vendor.vendorpannel.R;
 
 public class ProductsFragment extends Fragment {
-    private ConstraintLayout AddProduct;
+    private ConstraintLayout AddProduct, viewProduct;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-          View view = inflater.inflate(R.layout.fragment_products,container,false);
-            AddProduct = view.findViewById(R.id.AddProduct);
+        View view = inflater.inflate(R.layout.fragment_products, container, false);
+        AddProduct = view.findViewById(R.id.AddProduct);
+        viewProduct = view.findViewById(R.id.viewProduct);
 
-            AddProduct.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), ProductActivity.class);
-                   startActivity(intent);
+        AddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DatabaseActivityForPractise.class);
+                startActivity(intent);
 
-                }
-            });
+            }
+        });
+
+        viewProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ViewProductsActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
-        return  view;
+        return view;
 
 
     }

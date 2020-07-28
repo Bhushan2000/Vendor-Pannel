@@ -170,6 +170,7 @@ public class AadharFragment extends Fragment {
         final int selectedId = radioSexGroup.getCheckedRadioButtonId();
         radioSexButton = (RadioButton) view.findViewById(selectedId);
 
+
        if ( radioSexButton == view.findViewById(selectedId)){
            btnDisplay.setEnabled(true);
            btnDisplay.setOnClickListener(new View.OnClickListener() {
@@ -177,8 +178,8 @@ public class AadharFragment extends Fragment {
                public void onClick(View v) {
 
 
-
                    genderSelected = radioSexButton.getText().toString();
+
                    Toast.makeText(getContext(), radioSexButton.getText(), Toast.LENGTH_SHORT).show();
 
                }

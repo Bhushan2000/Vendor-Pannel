@@ -176,7 +176,7 @@
                             android:layout_marginLeft="5dp"
                             android:background="@drawable/rounded_blank"
                             android:hint="Amount"
-                            android:inputType="numberDecimal"
+
                             android:textSize="14dp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>

@@ -11,6 +11,8 @@ import com.vendor.vendorpannel.R;
 
 public class NewActivity extends AppCompatActivity {
 private Toolbar toolbar;
+public static String heading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,13 @@ private Toolbar toolbar;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        getSupportActionBar().setTitle("PAN Verification");
+        heading = getIntent().getStringExtra("toolbar_heading");
+
+
+        getSupportActionBar().setTitle(heading);
+
+
+
     }
 
     @Override

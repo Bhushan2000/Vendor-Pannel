@@ -2,22 +2,15 @@ package com.vendor.vendorpannel.Databases;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.ParseException;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class Database extends SQLiteOpenHelper {
     private Database mDbHelper;
@@ -27,6 +20,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String TABLE_NAME1 = "PANdetails_table";
     public static final String TABLE_NAME2 = "Aadhardetails_table";
     public static final String TABLE_NAME3 = "AddProducts_table";
+
     // PAN DATA
     public static final String COl_1 = "ID";
     public static final String COl_2 = "NAME";
@@ -81,7 +75,7 @@ public class Database extends SQLiteOpenHelper {
         // FOR AADHAR
         db.execSQL("create table " + TABLE_NAME2 + "(ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,VIDNUMBER INTEGER, AADHARCARDNUMBER INTEGER ,GENDER TEXT)");
         // FOR ADD PRODUCT
-        db.execSQL("create table " + TABLE_NAME3 + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, PRODUCT_TITLE TEXT , PRODUCT_CATEGORY TEXT, PRODUCT_SUBCATEGORY TEXT    )");
+        db.execSQL("create table " + TABLE_NAME3 + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, PRODUCT_TITLE TEXT , PRODUCT_CATEGORY TEXT, PRODUCT_SUBCATEGORY TEXT,PRODUCT_PRICE  TEXT )");
 
 
 
@@ -170,7 +164,7 @@ public class Database extends SQLiteOpenHelper {
 
     // FOR ADD PRODUCT
     public boolean insertData2(String productTitle, String productCategory, String productSubCategory
-//            ,String productPrice
+            , String productPrice
 //            ,String productPriceInDiscount, String productPriceRupees
 //                               ,String noOfStock,String minCompulsoryStock, String productGSTInRupees,String productGSTInDiscount,String description
     ) {
@@ -180,7 +174,7 @@ public class Database extends SQLiteOpenHelper {
         contentValues.put(COl_17, productCategory);
         contentValues.put(COl_18, productSubCategory);
 //        contentValues.put(COl_20, imageBytes);
-//        contentValues.put(COl_21, productPrice);
+        contentValues.put(COl_21, productPrice);
 //        contentValues.put(COl_22, productPriceInDiscount);
 //        contentValues.put(COl_23, productPriceRupees);
 //        contentValues.put(COl_24, noOfStock);
@@ -191,6 +185,7 @@ public class Database extends SQLiteOpenHelper {
 
 
         long result = db.insert(TABLE_NAME3, null, contentValues);
+
         if (result == -1) {
             return false;
 
@@ -201,6 +196,28 @@ public class Database extends SQLiteOpenHelper {
 
 
     }
+
+
+
+
+
+    public boolean insertImage(byte[] imageBytes) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COl_20, imageBytes);
+
+        long result = db.insert(TABLE_NAME3, null, cv);
+
+        if (result == -1) {
+            return false;
+
+        } else {
+            return true;
+
+        }
+
+    }
+
 
 //
 //    public static String formatDateTime(Context context, String timeToFormat) {
@@ -235,3 +252,9 @@ public class Database extends SQLiteOpenHelper {
 
 
 }
+
+
+
+
+
+

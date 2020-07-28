@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.NewActivity"></activity>
+        <activity android:name=".Activities.DatabaseActivityForPractise"></activity>
+        <activity android:name=".Activities.NewActivity" />
         <activity android:name=".Activities.PanVerificationActivity" />
         <activity android:name=".Activities.ProfileActivity" />
         <activity android:name=".Activities.AadharActivity" />

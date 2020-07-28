@@ -22,6 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.vendor.vendorpannel.Fragments.AadharFragment;
 import com.vendor.vendorpannel.Fragments.HomeFragment;
 import com.vendor.vendorpannel.Fragments.OrdersFragment;
+import com.vendor.vendorpannel.Fragments.PANFragment;
 import com.vendor.vendorpannel.Fragments.PaymentSettingFragment;
 import com.vendor.vendorpannel.Fragments.ProductPostingFragment;
 import com.vendor.vendorpannel.Fragments.ProductsFragment;
@@ -33,8 +34,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     FrameLayout frameLayout;
     private Window window;
     public static Toolbar toolbar;
-    private AppBarLayout.LayoutParams params;
-    private int scrollFlags;
+
+
+
+
     private  MenuItem previousMenuItem;
 
     private int currentFragment = -1;
@@ -49,8 +52,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         sharedPreference_config = new SharedPreference_Config(getApplicationContext());
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//        window = getWindow();
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
 
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle("Home");
@@ -66,8 +70,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         frameLayout = findViewById(R.id.fragment_container);
 
 
-        params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-        scrollFlags = params.getScrollFlags();
+
 
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -122,6 +125,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.setTitle(getString(R.string.products));
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProductsFragment()).commit();
+//                startActivity(new Intent(this,DatabaseActivityForPractise.class));
+
 
                 break;
 
@@ -142,9 +147,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_pan_verification:
                 toolbar.setTitle(getString(R.string.pan_verification));
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new PANFragment()).commit();
+//                startActivity(new Intent(this,PanVerificationActivity.class));
 
-                startActivity(new Intent(this,NewActivity.class));
-//                finish();
 
                 break;
             case R.id.nav_aadhar_verification:
@@ -182,22 +188,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-
-            if (currentFragment == HOME_FRAGMENT) {
-
-
-                super.onBackPressed();
-
-
-            }
-
-
-        }
+        super.onBackPressed();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -209,9 +201,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_message) {
+            Toast.makeText(this, "Messages", Toast.LENGTH_SHORT).show();
             return true;
 
         } else if (id == R.id.action_notification) {
+            Toast.makeText(this, "notification", Toast.LENGTH_SHORT).show();
+
             return true;
 
         }

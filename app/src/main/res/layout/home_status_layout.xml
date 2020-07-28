@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
         android:layout_toRightOf="@+id/imgStatus"
 
         android:text="All good here! 🙌" />
@@ -28,8 +30,8 @@
 
     <ImageView
         android:id="@+id/imgStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
 
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
@@ -39,11 +41,13 @@
 
     <ImageView
         android:id="@+id/imgStar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
         android:layout_marginTop="24dp"
-        android:layout_toRightOf="@id/imgStatus"
+        android:tint="#FFC107"
+        android:layout_alignParentRight="true"
+       android:layout_marginEnd="16dp"
         android:src="@drawable/ic_baseline_star_border_24" />
 
 

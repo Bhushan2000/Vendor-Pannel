@@ -53,10 +53,10 @@ public class ProductActivity extends AppCompatActivity {
     private ImageView productImageView;
     final int REQUEST_EXTERNAL_STORAGE = 100;
     private Database db;
-    private Uri selectedImageUri;
-    private Uri imageUri;
+     private Uri imageUri;
     private Uri resultUri;
     private Toolbar toolbar;
+    Uri ImageUri;
 
     // Product Info
     private EditText productTitle;
@@ -80,6 +80,10 @@ public class ProductActivity extends AppCompatActivity {
      private EditText productDescription;
      // Add product button
      private Button AddProduct;
+
+     public static String ID_products;
+
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -129,7 +133,9 @@ public class ProductActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Add new Product");
 
+        getSupportActionBar().setTitle("New Activity");
 
+        ID_products = getIntent().getStringExtra("ID_products");
         ///////////////////////////////////loading dialogue/////////////////////////////////////////////
 
         loadingDialogue = new Dialog(this);
@@ -209,27 +215,29 @@ public class ProductActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(productTitle.getText().toString())) {
                     if (!TextUtils.isEmpty(category.getSelectedItem().toString())) {
                         if (!TextUtils.isEmpty(subCategory.getSelectedItem().toString())) {
+                            if (!TextUtils.isEmpty(productPrice.getText().toString())) {
 //                            if (productImage.getDrawable()!=null) {
 
 
 //                                saveImageInDB();
 
 
-                            boolean isInserted = db.insertData2(productTitle.getText().toString(),
-                                    string1, string2
-//                                    ,productPrice.getText().toString()
-//                                    ,productPriceDiscount.getText().toString(),
+                                boolean isInserted = db.insertData2(productTitle.getText().toString(),
+                                        string1, string2
+
+                                        , productPrice.getText().toString()
+//                                    ,productPriceDiscount.getText().toString()
 //                                    productPriceInRupees.getText().toString()
 //                                    ,noOfPieces.getText().toString(),
 //                                    minCompulsoryStock.getText().toString(),
 //                                    gstInPercentage.getText().toString(),
 //                                    gstInRupees.getText().toString(),
 //                                    productDescription.getText().toString()
-                            );
+                                );
 
 
-                            if (isInserted) {
-                                Toast.makeText(ProductActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                                if (isInserted) {
+                                    Toast.makeText(ProductActivity.this, "Data Inserted", Toast.LENGTH_SHORT).show();
 
 
 //                                    Toast.makeText(PANActivity.this, PanCardNumber + " is Matching",
@@ -238,21 +246,29 @@ public class ProductActivity extends AppCompatActivity {
 
 //                                    loadingDialogue.show();
 
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
 
 
-                                        startActivity(new Intent(ProductActivity.this, VerificationActivity.class));
-                                        finish();
-                                    }
-                                }, 5000);
+                                            startActivity(new Intent(ProductActivity.this, VerificationActivity.class));
+                                            finish();
+                                        }
+                                    }, 5000);
 
-                            } else {
-                                Toast.makeText(ProductActivity.this, "Data Not Inserted", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ProductActivity.this, "Data Not Inserted", Toast.LENGTH_SHORT).show();
 
+
+                                }
+
+                            }else{
+                                productPrice.setError("Please enter  product price");
+                                productPrice.requestFocus();
 
                             }
+
+
 
 
 //                            }else{
@@ -285,6 +301,23 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    boolean saveImageInDB() {
+
+        try {
+
+            InputStream iStream = getContentResolver().openInputStream(imageUri);
+            byte[] inputData = Utils.getBytes(iStream);
+            db.insertImage(inputData);
+
+            return true;
+        } catch (IOException ioe) {
+            Log.e(TAG, "<saveImageInDB> Error : " + ioe.getLocalizedMessage());
+
+            return false;
+        }
 
     }
 
@@ -328,16 +361,23 @@ public class ProductActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            Uri ImageUri = data.getData();
+              ImageUri = data.getData();
             CropImage.activity()
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .setAspectRatio(1, 1)
                     .start(this);
+
+            // for Adding Image In Database
+
+            if (null != ImageUri) {
+                productImage.setImageURI(imageUri);
+            }
         }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
+
 
 
                 resultUri = result.getUri();
